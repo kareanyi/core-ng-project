@@ -1,5 +1,4 @@
 import service.MongoLoadTest;
-import service.MongoPreWarmer;
 
 import java.util.concurrent.ExecutionException;
 
@@ -11,8 +10,8 @@ public class Main {
         MongoPerfTestApp app = new MongoPerfTestApp();
         app.configure();
 
-        MongoPreWarmer preWarm = app.bean(MongoPreWarmer.class);
-        preWarm.execute();
+//        MongoPreWarmer preWarm = app.bean(MongoPreWarmer.class);
+//        preWarm.execute();
 
         MongoLoadTest test = app.bean(MongoLoadTest.class);
         test.execute();

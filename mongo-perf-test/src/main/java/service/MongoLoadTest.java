@@ -1,7 +1,7 @@
 package service;
 
-import core.framework.api.async.Executor;
 import core.framework.api.mongo.MongoCollection;
+import core.framework.impl.async.ThreadPools;
 import domain.Product;
 import domain.Sku;
 import org.slf4j.Logger;
@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 /**
@@ -18,13 +19,9 @@ import java.util.concurrent.Future;
  */
 public class MongoLoadTest {
     private final Logger logger = LoggerFactory.getLogger(MongoLoadTest.class);
-
+    private final ExecutorService executor = ThreadPools.cachedThreadPool(Runtime.getRuntime().availableProcessors() * 2, "executor-");
     @Inject
     MongoCollection<Product> productCollection;
-
-    @Inject
-    Executor executor;
-
     @Inject
     MongoCollection<Sku> skuCollection;
 
@@ -34,12 +31,13 @@ public class MongoLoadTest {
         List<Future<Void>> futures = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             final int finalI = i;
-            futures.add(executor.submit("insert", () -> {
+            Future<Void> future = executor.submit(() -> {
                 Product entity = new Product();
                 entity.id = "neo-test-" + finalI;
                 productCollection.replace(entity);
                 return null;
-            }));
+            });
+            futures.add(future);
         }
         for (Future<Void> future : futures) {
             future.get();
