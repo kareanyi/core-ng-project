@@ -4,4 +4,5 @@ include 'core-ng-api',
         'benchmark',
         'log-processor',
         'demo-service',
-        'demo-site'
+        'demo-site',
+        'mongo-perf-test'
