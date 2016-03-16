@@ -1,11 +1,13 @@
 import service.MongoLoadTest;
 import service.MongoPreWarmer;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * @author neo
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         MongoPerfTestApp app = new MongoPerfTestApp();
         app.configure();
 

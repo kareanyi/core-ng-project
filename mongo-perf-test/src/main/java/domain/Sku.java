@@ -26,6 +26,9 @@ public class Sku {
     @Field(name = "image_key")
     public String imageKey;
 
+    @Field(name = "image_url")
+    public String imageURL;
+
     @Field(name = "color")
     public String color;
 
