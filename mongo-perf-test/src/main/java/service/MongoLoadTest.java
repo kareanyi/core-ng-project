@@ -22,7 +22,5 @@ public class MongoLoadTest {
 
     public void execute() {
         logger.info("start load test");
-
-
     }
 }
