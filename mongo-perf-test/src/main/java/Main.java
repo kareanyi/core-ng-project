@@ -1,5 +1,5 @@
 import service.MongoLoadTest;
-import service.MongoPreWarm;
+import service.MongoPreWarmer;
 
 /**
  * @author neo
@@ -9,7 +9,7 @@ public class Main {
         MongoPerfTestApp app = new MongoPerfTestApp();
         app.configure();
 
-        MongoPreWarm preWarm = app.bean(MongoPreWarm.class);
+        MongoPreWarmer preWarm = app.bean(MongoPreWarmer.class);
         preWarm.execute();
 
         MongoLoadTest test = app.bean(MongoLoadTest.class);
