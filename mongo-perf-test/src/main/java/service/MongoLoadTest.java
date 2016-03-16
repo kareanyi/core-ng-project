@@ -28,13 +28,13 @@ public class MongoLoadTest {
     MongoCollection<Sku> skuCollection;
 
     public void execute() throws ExecutionException, InterruptedException {
-//        createEmptyProducts();
+        createEmptyProducts();
         createFullProducts();
     }
 
     private void createEmptyProducts() throws InterruptedException {
         logger.info("create empty product");
-        int size = 100000;
+        int size = 1000000;
         CountDownLatch latch = new CountDownLatch(size);
         for (int i = 0; i < size; i++) {
             final int finalI = i;
@@ -52,7 +52,7 @@ public class MongoLoadTest {
     private void createFullProducts() throws InterruptedException {
         logger.info("create full products");
         LocalDateTime now = LocalDateTime.now();
-        int size = 100000;
+        int size = 1000000;
         CountDownLatch latch = new CountDownLatch(size);
         for (int i = 0; i < size; i++) {
             final int finalI = i;
