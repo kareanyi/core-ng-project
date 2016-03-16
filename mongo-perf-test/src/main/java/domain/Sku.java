@@ -41,6 +41,15 @@ public class Sku {
     @Field(name = "weight")
     public Double weight;
 
+    @Field(name = "fee")
+    public Double fee;
+
+    @Field(name = "add_fee")
+    public Double addFee;
+
+    @Field(name = "harmonized_code")
+    public String harmonizedCode;
+
     @Field(name = "updated_time")
     public LocalDateTime updatedTime;
 
