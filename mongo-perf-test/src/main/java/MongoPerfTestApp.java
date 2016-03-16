@@ -2,7 +2,7 @@ import core.framework.api.App;
 import domain.Product;
 import domain.Sku;
 import service.MongoLoadTest;
-import service.MongoPreWarm;
+import service.MongoPreWarmer;
 
 /**
  * @author neo
@@ -15,6 +15,6 @@ public class MongoPerfTestApp extends App {
         mongo().collection(Sku.class);
 
         bind(MongoLoadTest.class);
-        bind(MongoPreWarm.class);
+        bind(MongoPreWarmer.class);
     }
 }

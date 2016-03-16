@@ -12,8 +12,8 @@ import javax.inject.Inject;
 /**
  * @author neo
  */
-public class MongoPreWarm {
-    private final Logger logger = LoggerFactory.getLogger(MongoPreWarm.class);
+public class MongoPreWarmer {
+    private final Logger logger = LoggerFactory.getLogger(MongoPreWarmer.class);
 
     @Inject
     MongoCollection<Product> productCollection;
