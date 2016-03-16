@@ -45,6 +45,9 @@ public class Product {
     @Field(name = "fee")
     public Double fee;
 
+    @Field(name = "add_fee")
+    public Double addFee;
+
     @Field(name = "harmonized_code")
     public String harmonizedCode;
 }
