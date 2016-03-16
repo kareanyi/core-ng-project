@@ -136,6 +136,24 @@ project(':demo-service') {
     }
 }
 
+project(':mongo-perf-test') {
+    apply from: file("${rootDir}/gradle/app.gradle")
+
+    dependencies {
+        compile(
+                project(':core-ng'),
+                'redis.clients:jedis:2.8.0@jar'
+        )
+        runtime(
+                "org.mongodb:mongo-java-driver:${mongoVersion}",
+                "com.rabbitmq:amqp-client:${rabbitVersion}"
+        )
+        testCompile(
+                project(':core-ng-test')
+        )
+    }
+}
+
 project(':demo-site') {
     apply from: file("${rootDir}/gradle/app.gradle")
 
