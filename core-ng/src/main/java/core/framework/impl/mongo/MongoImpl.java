@@ -3,7 +3,6 @@ package core.framework.impl.mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientURI;
-import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoDatabase;
 import core.framework.api.mongo.Collection;
 import core.framework.api.mongo.Mongo;
@@ -113,7 +112,7 @@ public class MongoImpl implements Mongo {
 
     <T> com.mongodb.client.MongoCollection<T> mongoCollection(Class<T> entityClass) {
         Collection collection = entityClass.getDeclaredAnnotation(Collection.class);
-        return database().getCollection(collection.name(), entityClass).withWriteConcern(WriteConcern.UNACKNOWLEDGED);
+        return database().getCollection(collection.name(), entityClass);
     }
 
     private MongoDatabase database() {
