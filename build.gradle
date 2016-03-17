@@ -142,10 +142,10 @@ project(':mongo-perf-test') {
     dependencies {
         compile(
                 project(':core-ng'),
-                'redis.clients:jedis:2.8.0@jar'
+                'redis.clients:jedis:2.8.0@jar',
+                "org.mongodb:mongo-java-driver:${mongoVersion}"
         )
         runtime(
-                "org.mongodb:mongo-java-driver:${mongoVersion}",
                 "com.rabbitmq:amqp-client:${rabbitVersion}"
         )
         testCompile(
