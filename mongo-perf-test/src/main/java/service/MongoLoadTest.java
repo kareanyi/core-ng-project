@@ -29,7 +29,7 @@ public class MongoLoadTest {
 
     public void execute() throws ExecutionException, InterruptedException {
 //        createEmptyProducts();
-        deleteProducts();
+//        deleteProducts();
         createFullProducts();
     }
 
@@ -92,7 +92,7 @@ public class MongoLoadTest {
                 entity.fee = 0.15;
                 entity.addFee = 0d;
                 entity.harmonizedCode = "7117.90.00";
-                productCollection.insert(entity);
+                productCollection.replace(entity);
                 latch.countDown();
                 return null;
             });
