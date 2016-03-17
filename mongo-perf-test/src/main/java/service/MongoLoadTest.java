@@ -28,7 +28,7 @@ public class MongoLoadTest {
     MongoCollection<Sku> skuCollection;
 
     public void execute() throws ExecutionException, InterruptedException {
-        createEmptyProducts();
+//        createEmptyProducts();
         createFullProducts();
     }
 
