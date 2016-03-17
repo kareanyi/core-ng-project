@@ -29,7 +29,23 @@ public class MongoLoadTest {
 
     public void execute() throws ExecutionException, InterruptedException {
 //        createEmptyProducts();
+        deleteProducts();
         createFullProducts();
+    }
+
+    private void deleteProducts() throws InterruptedException {
+        logger.info("delete all products");
+        int size = 1000000;
+        CountDownLatch latch = new CountDownLatch(size);
+        for (int i = 0; i < size; i++) {
+            final int finalI = i;
+            executor.submit(() -> {
+                productCollection.delete("neo-test-" + finalI);
+                latch.countDown();
+                return null;
+            });
+        }
+        latch.await();
     }
 
     private void createEmptyProducts() throws InterruptedException {
@@ -76,7 +92,7 @@ public class MongoLoadTest {
                 entity.fee = 0.15;
                 entity.addFee = 0d;
                 entity.harmonizedCode = "7117.90.00";
-                productCollection.replace(entity);
+                productCollection.insert(entity);
                 latch.countDown();
                 return null;
             });
