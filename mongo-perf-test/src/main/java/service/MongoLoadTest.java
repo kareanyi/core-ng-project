@@ -2,6 +2,7 @@ package service;
 
 import core.framework.api.mongo.MongoCollection;
 import core.framework.api.util.Lists;
+import core.framework.api.util.Randoms;
 import core.framework.impl.async.ThreadPools;
 import domain.Product;
 import domain.ProductImage;
@@ -71,11 +72,11 @@ public class MongoLoadTest {
         int size = 1000000;
         CountDownLatch latch = new CountDownLatch(size);
         for (int i = 0; i < size; i++) {
-            final int finalI = i;
+            final int id = (int) Randoms.number(0, size);
             executor.submit(() -> {
                 Product entity = new Product();
-                entity.id = "neo-test-" + finalI;
-                entity.categoryId = "watchessunglassesjewelry-jewelry-women-" + finalI;
+                entity.id = "neo-test-" + id;
+                entity.categoryId = "watchessunglassesjewelry-jewelry-women-" + id;
                 entity.name = "Aurelie Bidermann Monteroso Leaf Bangle";
                 entity.description = "A hammered, gold-plated Aurelie Bidermann cuff with elegant appeal. A hit of colorful thread accentuates the intricate leaf design. Malleable. Gold plate. Made in France. Measurements Diameter: 2.5in / 6.5cm";
                 entity.images = Lists.newArrayList(image("main", "product/V00013/ABIDE30085/main-1245260503.jpeg"),
