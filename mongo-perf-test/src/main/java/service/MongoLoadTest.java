@@ -32,6 +32,8 @@ public class MongoLoadTest {
 //        createEmptyProducts();
 //        deleteProducts();
         createFullProducts();
+
+        executor.shutdown();
     }
 
     private void deleteProducts() throws InterruptedException {
