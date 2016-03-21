@@ -3,6 +3,7 @@ package service;
 import core.framework.api.mongo.MongoCollection;
 import core.framework.api.util.Lists;
 import core.framework.api.util.Randoms;
+import core.framework.api.util.StopWatch;
 import core.framework.impl.async.ThreadPools;
 import domain.Product;
 import domain.ProductImage;
@@ -31,7 +32,10 @@ public class MongoLoadTest {
     public void execute() throws ExecutionException, InterruptedException {
 //        createEmptyProducts();
 //        deleteProducts();
+
+        StopWatch watch = new StopWatch();
         createFullProducts();
+        logger.info("DONE!!! elapsed={}", watch.elapsedTime());
 
         executor.shutdown();
     }
